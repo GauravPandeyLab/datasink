@@ -1,0 +1,30 @@
+FROM ubuntu
+MAINTAINER Alex Wang
+
+#DEPENDENCIES
+RUN apt-get update && apt-get install -y \
+	groovy \ 
+	cython \
+	python-numpy\
+	python-scipy \
+	python-pip \
+	git \
+	curl \
+	unzip \
+	nano 
+RUN pip install -U scikit-learn==0.14.1 \
+	scipy==0.12.0 \
+	pandas==0.18.1 
+#INSTALL WEKA
+RUN curl -O -L http://prdownloads.sourceforge.net/weka/weka-3-7-10.zip
+RUN unzip weka-3-7-10.zip && cp weka-3-7-10/weka.jar /usr/share/java
+
+#INSTALL DATASINK
+RUN git clone https://github.com/shwhalen/datasink.git
+ENV CLASSPATH=$CLASSPATH:/usr/share/java/weka.jar
+ENV PATH=“${PATH}:$HOME/groovy/bin”
+ENV JAVA_OPTS -Xmx4g
+
+#COPY DATASINK INPUT FILES
+RUN mkdir $HOME/diabetes
+COPY classifiers.txt diabetes.arff weka.properties $HOME/diabetes/
