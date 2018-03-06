@@ -129,9 +129,9 @@ The `groovy` executable must also be somewhere in your search path (and already 
 
 ## Quick setup: Docker image
 
-With a docker image, users don't need to worry about binaries, dependencies and environment variables since all of these are configured in the docker container. A container of all componnets can be easily created based on existing docker image. Datasink specified docker file is also provided with all dependencies included. 
+With a docker image, users don't need to worry about binaries, dependencies and environment variables since all of these are configured in the docker file. A container of all componnets can be easily created based on existing docker image. 
 
-As a prerequisite, [docker](https://www.docker.com) should be installed. Then, you can pull already existing image from docker cloud by running:
+As a prerequisite, [docker](https://www.docker.com) should be installed. Then, you can pull image from docker cloud by running:
 	
 	docker pull alexwang0106/datasink:2.2
 	docker run -ti alexwang0106/datasink:2.2 /bin/bash
@@ -143,7 +143,7 @@ An alternative way to build datasink docker image is simply downloading the Dock
 	docker run -ti IMAGE_NAME /bin/bash
 
 
-This will create an interative container shell, you can copy your own data to the container using
+This will create an interactive container shell, you can copy your own data to the container using
 
 	docker cp foo.txt YOUR_CONTAINER:/path/to/dir/
 
