@@ -92,27 +92,6 @@ A suitable version of Weka is unfortunately not bundled with MacPorts, so run th
 	unzip weka-3-7-10.zip
 	sudo cp weka-3-7-10/weka.jar /opt/local/share/java
 
-## Setup option 4: Docker image
-
-With a docker image, users don't need to install binaries and dependencies. A container of all componnets can be easily created based on existing docker image. Datasink specified docker file is also provided with all dependencies included. 
-
-As a prerequisite, [docker](https://www.docker.com) should be installed. Then, you can call already existing image from docker cloud by running:
-	
-	docker pull alexwang0106/datasink:2.2
-	docker run -ti alexwang0106/datasink:2.2 /bin/bash
-
-
-An alternative way to build datasink docker image is simply downloading the Dockerfile and use the following command:
-	
-	docker build /PATH/TO/DOCKERFILE
-	docker run -ti IMAGE_NAME /bin/bash
-
-
-This will create an interative container shell, you can copy your own data to the container using
-
-	docker cp foo.txt YOUR_CONTAINER:/path/to/dir/
-
-
 ## Obtaining the source
 
 The latest source code can be obtained by cloning the public git repository using the following from the command line:
@@ -148,8 +127,28 @@ The `groovy` executable must also be somewhere in your search path (and already 
 
 	export PATH=$PATH:$HOME/groovy/bin
 
-You're finally ready to setup and construct an ensemble!
+## Quick setup: Docker image
 
+With a docker image, users don't need to worry about binaries, dependencies and environment variables since all of these are configured in the docker container. A container of all componnets can be easily created based on existing docker image. Datasink specified docker file is also provided with all dependencies included. 
+
+As a prerequisite, [docker](https://www.docker.com) should be installed. Then, you can pull already existing image from docker cloud by running:
+	
+	docker pull alexwang0106/datasink:2.2
+	docker run -ti alexwang0106/datasink:2.2 /bin/bash
+
+
+An alternative way to build datasink docker image is simply downloading the Dockerfile and use the following command:
+	
+	docker build /PATH/TO/DOCKERFILE
+	docker run -ti IMAGE_NAME /bin/bash
+
+
+This will create an interative container shell, you can copy your own data to the container using
+
+	docker cp foo.txt YOUR_CONTAINER:/path/to/dir/
+
+
+You're finally ready to setup and construct an ensemble!
 
 
 ## Walkthrough: Building an ensemble
